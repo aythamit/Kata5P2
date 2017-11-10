@@ -8,7 +8,7 @@ import Modelo.Histogram;
 import Modelo.Mail;
 import Vista.HistogramDisplay;
 import Vista.MailHistogramBuilder;
-import Vista.MailListReader;
+import Vista.MailListReaderDDBB;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,19 +31,19 @@ public class main {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         
-        execute(args[0]);
-
+        execute();
         }
 
-    private static void execute(String file) throws FileNotFoundException, IOException {
-        input(file);
+    private static void execute() throws FileNotFoundException, IOException {
+        input();
         process();
         output();
      }
 
-    private static void input(String file) throws FileNotFoundException, IOException {
+    private static void input() throws FileNotFoundException, IOException {
            mails= new ArrayList<Mail>();
-            mails = MailListReader.read(file); }
+           mails = MailListReaderDDBB.read();
+    }
 
     private static void process() {
          histogram= MailHistogramBuilder.build(mails);}
